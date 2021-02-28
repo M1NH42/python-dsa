@@ -62,9 +62,24 @@ class HeapPriorityQueue(PriorityQueueBase):
                 self._downheap(small_child)             # recur at position of small_child
 
     #--------------------- public behaviours --------------------------------------------
-    def __init__(self):
-        """Create a new empty Priority Queue."""
-        self._data = []
+    # def __init__(self):
+    #     """Create a new empty Priority Queue."""
+    #     self._data = []
+    
+    def __init__(self, contents=()):
+        """Create a new priority queue.
+
+        By default, queue will be empty. If contents is given, it should be as an
+        iterable sequence of (k, v) tuple specifying the initial contents.
+        """
+        self._data = [self._Item(k,v) for k,v in contents]
+        if len(self._data) > 1:
+            self._heapify()
+
+    def _heapify(self):
+        start = self._parent(len(self) - 1)             # start at the parent of the last leaf
+        for j in range(start, -1, -1):                  # going to and including the root
+            self._downheap(j)
 
     def __len__(self):
         """Return the number of elements in the priority queue."""

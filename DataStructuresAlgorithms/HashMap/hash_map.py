@@ -1,3 +1,5 @@
+# Extending the MutableMapping abstract base class to provide a nonpblic _Item
+# class for use in various map implementation
 class MapBase(MutableMpping):
     """Our own abstract base class tha includes a nonpublic _Item class."""
 

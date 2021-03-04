@@ -38,3 +38,11 @@ class UnsortedTableMap(MapBase):
 
     def __setitem__(self, k, v):
         """Assign value v to key k, overwriting existing value if present."""
+        for item in self._table:
+            if k == item._key:
+                item._value = v
+            return
+        # did not find match for the key
+        self._table.append(self._Item(k, v))
+
+    def __delitem__(self, k):

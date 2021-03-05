@@ -46,3 +46,18 @@ class UnsortedTableMap(MapBase):
         self._table.append(self._Item(k, v))
 
     def __delitem__(self, k):
+        """Remove item associated with the k (raise KetError if not found)"""
+        for j in range(len(self._table)):
+            if k == self._table[j]._key:
+                self._table.pop(j)
+                return
+        raise KeyError('Key Error:' + repr(k))
+
+    def __len__(self):
+        """Return number of items in the map"""
+        return len(self._table)
+
+    def __iter__(self):
+        """Generate iteration of map keys"""
+        for item in self._table:
+            yield item._key

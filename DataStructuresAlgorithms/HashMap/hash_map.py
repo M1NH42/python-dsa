@@ -1,6 +1,9 @@
 # Extending the MutableMapping abstract base class to provide a nonpblic _Item
 # class for use in various map implementation
-class MapBase(MutableMpping):
+from collections.abc import MutableMapping
+
+
+class MapBase(MutableMapping):
     """Our own abstract base class tha includes a nonpublic _Item class."""
 
     # --------------------- nested _Item class -----------------------------
@@ -61,3 +64,11 @@ class UnsortedTableMap(MapBase):
         """Generate iteration of map keys"""
         for item in self._table:
             yield item._key
+
+
+class HashMapBase(MapBase):
+    """Astract base class for map using hash-table with MAD compression."""
+
+    def __init__(self, cap=11, p=109345121):
+        """Create an empty hash table map."""
+        self._table

@@ -64,3 +64,6 @@ class HashMapBase(MapBase):
         self._n = 0
         for (k, v) in old:
             self[k] = v
+
+
+class ChainHashMap(HashMapBase):
